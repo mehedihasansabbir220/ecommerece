@@ -63,3 +63,71 @@ ecommerce-api/
 ├── .env
 └── README.md
 ```
+# Advanced E-commerce API
+
+## Project Overview
+A comprehensive E-commerce API built with MongoDB, TypeScript, and Node.js, featuring robust user management, product catalog, cart system, and order processing.
+
+## Features
+- 🔐 Multi-Role Authentication (Admin, Vendor, Customer)
+- 📦 Advanced Product Management
+- 🛒 Dynamic Cart System
+- 💳 Order Processing
+- 🔍 Advanced Search and Filtering
+- 📊 Analytics Dashboard
+
+## Technology Stack
+- Backend: Node.js, Express
+- Database: MongoDB, Mongoose
+- Authentication: JWT, bcrypt
+- Validation: Joi
+- Payment Integration: Stripe (Planned)
+
+## Prerequisites
+- Node.js (v14+)
+- MongoDB
+- npm or yarn
+
+## Installation
+1. Clone the repository
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+   Create .env file with required configurations
+Run the application
+bashCopynpm run dev
+
+
+Environment Variables
+
+MONGODB_URI: MongoDB connection string
+JWT_SECRET: Secret for JWT token generation
+PORT: Application port
+
+API Endpoints
+```
+/api/users: User authentication and management
+/api/products: Product CRUD operations
+/api/cart: Cart management
+/api/orders: Order processing
+```
+Testing
+bashCopynpm test
+Contributing
+
+1. Fork the repository
+Create your feature branch
+Commit your changes
+Push to the branch
+Create a Pull Request
+
+License
+MIT License
+Copy
+## Deployment Considerations
+1. Use environment-specific configurations
+2. Implement robust error handling
+3. Set up proper logging
+4. Configure CORS and security headers
+5. Use process managers like PM2 for production

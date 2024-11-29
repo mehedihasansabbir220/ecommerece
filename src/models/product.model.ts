@@ -1,7 +1,6 @@
-// src/models/product.model.ts
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-export interface IProduct extends mongoose.Document {
+export interface IProduct extends Document {
   name: string;
   description: string;
   price: number;
@@ -13,20 +12,24 @@ export interface IProduct extends mongoose.Document {
   discountPercentage?: number;
   isActive: boolean;
   reviews: mongoose.Types.ObjectId[];
+  getPriceAfterDiscount(): number; // Add the method signature here
+  createdAt:{
+    
+  }
 }
 
-const ProductSchema = new mongoose.Schema({
-  name: { 
-    type: String, 
+const ProductSchema = new Schema<IProduct>({
+  name: {
+    type: String,
     required: true,
     trim: true
   },
-  description: { 
-    type: String, 
-    required: true 
+  description: {
+    type: String,
+    required: true
   },
-  price: { 
-    type: Number, 
+  price: {
+    type: Number,
     required: true,
     min: 0
   },
@@ -35,44 +38,44 @@ const ProductSchema = new mongoose.Schema({
     ref: 'Category',
     required: true
   },
-  brand: { 
-    type: String, 
-    required: true 
+  brand: {
+    type: String,
+    required: true
   },
-  stockQuantity: { 
-    type: Number, 
+  stockQuantity: {
+    type: Number,
     required: true,
     min: 0
   },
-  images: [{ 
-    type: String 
+  images: [{
+    type: String
   }],
   vendor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  discountPercentage: { 
-    type: Number, 
+  discountPercentage: {
+    type: Number,
     default: 0,
     min: 0,
     max: 100
   },
-  isActive: { 
-    type: Boolean, 
-    default: true 
+  isActive: {
+    type: Boolean,
+    default: true
   },
   reviews: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Review'
   }],
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 
-// Create price after discount method
+// Define the method on the schema
 ProductSchema.methods.getPriceAfterDiscount = function() {
   return this.price * (1 - this.discountPercentage / 100);
 };
